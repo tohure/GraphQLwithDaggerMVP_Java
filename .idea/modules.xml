@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/GraphQLwithDagger.iml" filepath="$PROJECT_DIR$/GraphQLwithDagger.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GraphQLwithDaggerMVP_Java.iml" filepath="$PROJECT_DIR$/GraphQLwithDaggerMVP_Java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

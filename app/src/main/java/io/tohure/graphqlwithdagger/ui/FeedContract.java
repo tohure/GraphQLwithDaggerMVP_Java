@@ -1,6 +1,9 @@
 package io.tohure.graphqlwithdagger.ui;
 
-import io.tohure.graphqlwithdagger.utils.BasePresenter;
+
+import java.util.List;
+
+import io.tohure.graphqlwithdagger.FeedQuery;
 
 /**
  * Created by tohure on 28/02/18.
@@ -16,17 +19,25 @@ public interface FeedContract {
 
         void showError(String error);
 
+        void showResult(List<FeedQuery.FeedEntry> feeds);
+
     }
 
-    interface Presenter extends BasePresenter<View> {
+    interface Presenter {
 
         void getFeed(int limit);
 
     }
 
+    interface Interactor {
+
+        void getFeedFromApollo(int limit, Callback callback);
+
+    }
+
     interface Callback {
 
-        void getFeedSucces();
+        void getFeedSucces(List<FeedQuery.FeedEntry> feeds);
 
         void getFeedError(String error);
 
