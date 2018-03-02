@@ -21,8 +21,8 @@ import io.tohure.graphqlwithdagger.type.FeedType;
 
 public class FeedInteractor implements FeedContract.Interactor {
 
-    private ApolloClient apolloClient;
-    private Handler handler;
+    private final ApolloClient apolloClient;
+    private final Handler handler;
     private ApolloCall<FeedQuery.Data> dataApolloCall;
 
     @Inject
@@ -73,7 +73,6 @@ public class FeedInteractor implements FeedContract.Interactor {
                         callback.getFeedError(e.getMessage());
                     }
                 });*/
-
     }
 
     @Override

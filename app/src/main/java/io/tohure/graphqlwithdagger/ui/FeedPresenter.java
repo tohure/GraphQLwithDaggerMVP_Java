@@ -13,7 +13,7 @@ import io.tohure.graphqlwithdagger.FeedQuery;
 public class FeedPresenter implements FeedContract.Presenter, FeedContract.Callback {
 
     private FeedContract.View view;
-    private FeedInteractor interactor;
+    private final FeedInteractor interactor;
 
     @Inject
     public FeedPresenter(FeedContract.View view, FeedInteractor interactor) {

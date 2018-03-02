@@ -29,7 +29,7 @@ public class FeedActivity extends AppCompatActivity implements FeedContract.View
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_feed);
         init();
     }
 

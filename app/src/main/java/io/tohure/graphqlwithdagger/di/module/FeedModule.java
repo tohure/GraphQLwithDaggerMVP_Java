@@ -18,7 +18,7 @@ import io.tohure.graphqlwithdagger.ui.FeedPresenter;
 @Module
 public class FeedModule {
 
-    private FeedContract.View view;
+    private final FeedContract.View view;
 
     public FeedModule(FeedContract.View view) {
         this.view = view;
