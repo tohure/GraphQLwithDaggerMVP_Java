@@ -1,7 +1,6 @@
 package io.tohure.graphqlwithdagger.ui;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,10 +40,14 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedItemViewHo
     @Override
     public void onBindViewHolder(FeedAdapter.FeedItemViewHolder holder, int position) {
 
-        holder.lblItem1.setText(String.valueOf(feedEntries.get(position).id()));
+        holder.lblItem1.setText(feedEntries.get(position).postedBy().login());
 
-        /*holder.lblItem1.setText(feedEntries.get(position).repository().__typename());
-        holder.lblItem2.setText(feedEntries.get(position).postedBy().__typename());*/
+        if (feedEntries.get(position).repository() != null) {
+            holder.lblItem2.setText(feedEntries.get(position).repository().fragments().repositoryFragment().full_name());
+        } else {
+            holder.lblItem2.setText("No repository");
+        }
+
     }
 
     @Override
@@ -54,10 +57,8 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedItemViewHo
 
     class FeedItemViewHolder extends RecyclerView.ViewHolder {
 
-
         private final TextView lblItem1;
         private final TextView lblItem2;
-
 
         FeedItemViewHolder(View itemView) {
             super(itemView);

@@ -19,6 +19,7 @@ import io.tohure.graphqlwithdagger.type.FeedType;
 public class FeedInteractor implements FeedContract.Interactor {
 
     private ApolloClient apolloClient;
+    private ApolloCall<FeedQuery.Data> dataApolloCall;
 
     @Inject
     public FeedInteractor(ApolloClient apolloClient) {
@@ -33,7 +34,24 @@ public class FeedInteractor implements FeedContract.Interactor {
                 .type(FeedType.HOT)
                 .build();
 
-        apolloClient
+        dataApolloCall =
+                apolloClient
+                        .query(feedQuery)
+                        .responseFetcher(ApolloResponseFetchers.NETWORK_FIRST);
+
+        dataApolloCall.enqueue(new ApolloCall.Callback<FeedQuery.Data>() {
+            @Override
+            public void onResponse(@Nonnull Response<FeedQuery.Data> response) {
+                callback.getFeedSucces(response.data().feedEntries());
+            }
+
+            @Override
+            public void onFailure(@Nonnull ApolloException e) {
+                callback.getFeedError(e.getMessage());
+            }
+        });
+
+                /*apolloClient
                 .query(feedQuery)
                 .responseFetcher(ApolloResponseFetchers.NETWORK_FIRST)
                 .enqueue(new ApolloCall.Callback<FeedQuery.Data>() {
@@ -46,8 +64,15 @@ public class FeedInteractor implements FeedContract.Interactor {
                     public void onFailure(@Nonnull ApolloException e) {
                         callback.getFeedError(e.getMessage());
                     }
-                });
+                });*/
 
+    }
+
+    @Override
+    public void cancelCalls() {
+        if (dataApolloCall != null) {
+            dataApolloCall.cancel();
+        }
     }
 
 }

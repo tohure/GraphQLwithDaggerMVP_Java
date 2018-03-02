@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -68,11 +67,18 @@ public class FeedActivity extends AppCompatActivity implements FeedContract.View
     @Override
     public void showResult(final List<FeedQuery.FeedEntry> feedEntries) {
 
-        this.runOnUiThread(new Runnable() {
+        FeedActivity.this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 feedAdapter.addData(feedEntries);
             }
         });
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.detachView();
     }
 }

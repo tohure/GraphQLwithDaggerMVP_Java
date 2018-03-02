@@ -1,7 +1,5 @@
 package io.tohure.graphqlwithdagger.ui;
 
-import android.util.Log;
-
 import java.util.List;
 
 import javax.inject.Inject;
@@ -27,6 +25,12 @@ public class FeedPresenter implements FeedContract.Presenter, FeedContract.Callb
     public void getFeed(int limit) {
         view.showLoading();
         interactor.getFeedFromApollo(limit, this);
+    }
+
+    @Override
+    public void detachView() {
+        interactor.cancelCalls();
+        this.view = null;
     }
 
     @Override

@@ -27,11 +27,15 @@ public interface FeedContract {
 
         void getFeed(int limit);
 
+        void detachView();
+
     }
 
     interface Interactor {
 
         void getFeedFromApollo(int limit, Callback callback);
+
+        void cancelCalls();
 
     }
 
