@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import io.tohure.graphqlwithdagger.FeedQuery;
@@ -40,12 +41,16 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedItemViewHo
     @Override
     public void onBindViewHolder(FeedAdapter.FeedItemViewHolder holder, int position) {
 
-        holder.lblItem1.setText(feedEntries.get(position).postedBy().login());
+        if (feedEntries.get(position).postedBy() != null) {
+            holder.lblItem1.setText(String.format("@%s", feedEntries.get(position).postedBy().login()));
+        } else {
+            holder.lblItem1.setText(String.valueOf(feedEntries.get(position).id()));
+        }
 
         if (feedEntries.get(position).repository() != null) {
             holder.lblItem2.setText(feedEntries.get(position).repository().fragments().repositoryFragment().full_name());
         } else {
-            holder.lblItem2.setText("No repository");
+            holder.lblItem2.setText(R.string.not_repository);
         }
 
     }

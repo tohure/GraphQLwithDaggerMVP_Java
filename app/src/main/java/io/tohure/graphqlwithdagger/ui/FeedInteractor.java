@@ -1,6 +1,9 @@
 package io.tohure.graphqlwithdagger.ui;
 
+import android.os.Handler;
+
 import com.apollographql.apollo.ApolloCall;
+import com.apollographql.apollo.ApolloCallback;
 import com.apollographql.apollo.ApolloClient;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
@@ -19,45 +22,50 @@ import io.tohure.graphqlwithdagger.type.FeedType;
 public class FeedInteractor implements FeedContract.Interactor {
 
     private ApolloClient apolloClient;
+    private Handler handler;
     private ApolloCall<FeedQuery.Data> dataApolloCall;
 
     @Inject
-    public FeedInteractor(ApolloClient apolloClient) {
+    public FeedInteractor(ApolloClient apolloClient, Handler handler) {
         this.apolloClient = apolloClient;
+        this.handler = handler;
     }
 
     @Override
     public void getFeedFromApollo(int limit, final FeedContract.Callback callback) {
 
-        FeedQuery feedQuery = FeedQuery.builder()
+        final FeedQuery feedQuery = FeedQuery.builder()
                 .limit(limit)
                 .type(FeedType.HOT)
                 .build();
 
+        //With Handler way
         dataApolloCall =
                 apolloClient
                         .query(feedQuery)
                         .responseFetcher(ApolloResponseFetchers.NETWORK_FIRST);
 
-        dataApolloCall.enqueue(new ApolloCall.Callback<FeedQuery.Data>() {
+        dataApolloCall.enqueue(new ApolloCallback<>(new ApolloCall.Callback<FeedQuery.Data>() {
             @Override
             public void onResponse(@Nonnull Response<FeedQuery.Data> response) {
-                callback.getFeedSucces(response.data().feedEntries());
+                callback.getFeedSuccess(response.data().feedEntries());
             }
 
             @Override
             public void onFailure(@Nonnull ApolloException e) {
                 callback.getFeedError(e.getMessage());
             }
-        });
+        }, handler));
 
-                /*apolloClient
+        //Without Handler way
+        /*apolloClient
                 .query(feedQuery)
                 .responseFetcher(ApolloResponseFetchers.NETWORK_FIRST)
                 .enqueue(new ApolloCall.Callback<FeedQuery.Data>() {
                     @Override
                     public void onResponse(@Nonnull Response<FeedQuery.Data> response) {
-                        callback.getFeedSucces(response.data().feedEntries());
+                        Log.d("thr", "onResponse: " + response.data().feedEntries().toString());
+                        callback.getFeedSuccess(response.data().feedEntries());
                     }
 
                     @Override

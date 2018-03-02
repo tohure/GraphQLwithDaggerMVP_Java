@@ -1,5 +1,8 @@
 package io.tohure.graphqlwithdagger.di.module;
 
+import android.os.Handler;
+import android.os.Looper;
+
 import com.apollographql.apollo.ApolloClient;
 
 import dagger.Module;
@@ -27,8 +30,13 @@ public class FeedModule {
     }
 
     @Provides
-    FeedInteractor provideFeedInteractor(ApolloClient apolloClient) {
-        return new FeedInteractor(apolloClient);
+    Handler provideMainHandler() {
+        return new Handler(Looper.getMainLooper());
+    }
+
+    @Provides
+    FeedInteractor provideFeedInteractor(ApolloClient apolloClient, Handler handler) {
+        return new FeedInteractor(apolloClient, handler);
     }
 
     @Provides

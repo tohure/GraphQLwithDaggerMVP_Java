@@ -34,7 +34,7 @@ public class FeedPresenter implements FeedContract.Presenter, FeedContract.Callb
     }
 
     @Override
-    public void getFeedSucces(List<FeedQuery.FeedEntry> feedEntries) {
+    public void getFeedSuccess(List<FeedQuery.FeedEntry> feedEntries) {
         view.hideLoading();
         view.showResult(feedEntries);
     }

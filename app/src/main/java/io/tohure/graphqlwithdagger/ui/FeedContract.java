@@ -41,7 +41,7 @@ public interface FeedContract {
 
     interface Callback {
 
-        void getFeedSucces(List<FeedQuery.FeedEntry> feeds);
+        void getFeedSuccess(List<FeedQuery.FeedEntry> feeds);
 
         void getFeedError(String error);
 
