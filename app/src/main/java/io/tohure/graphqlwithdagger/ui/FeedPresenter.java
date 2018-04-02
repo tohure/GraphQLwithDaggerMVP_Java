@@ -16,7 +16,7 @@ public class FeedPresenter implements FeedContract.Presenter, FeedContract.Callb
     private final FeedInteractor interactor;
 
     @Inject
-    public FeedPresenter(FeedContract.View view, FeedInteractor interactor) {
+    FeedPresenter(FeedContract.View view, FeedInteractor interactor) {
         this.view = view;
         this.interactor = interactor;
     }

@@ -1,6 +1,6 @@
 ## Apollo + MVP + Dagger2
 
-En este pequeño ejemplo, estoy consumiendo un servicio GraphQL de GitHub, de su API pública.
+En este pequeño ejemplo estoy consumiendo un servicio GraphQL de GitHub de su API pública.
 
 Siguiendo un estándar MVP, he separado las capas de la aplicación para tener algo más legible.
 
@@ -15,4 +15,4 @@ por si desean trabajarlo de la otra forma.
 La inyección de dependencias están siendo manejadas con Dagger2.
 
 Todo el proyecto esta bajo Java, desde las capas del MVP, 
-los módulos para la Inyeccin de dependencias y las vistas usadas.
+los módulos para la Inyección de Dependencias y las vistas usadas.

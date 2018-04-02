@@ -1,7 +1,6 @@
 package io.tohure.graphqlwithdagger.ui;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -12,13 +11,11 @@ import java.util.List;
 import javax.inject.Inject;
 
 import dagger.Lazy;
+import dagger.android.support.DaggerAppCompatActivity;
 import io.tohure.graphqlwithdagger.FeedQuery;
 import io.tohure.graphqlwithdagger.R;
-import io.tohure.graphqlwithdagger.di.component.DaggerFeedComponent;
-import io.tohure.graphqlwithdagger.di.module.FeedModule;
-import io.tohure.graphqlwithdagger.di.module.GraphModule;
 
-public class FeedActivity extends AppCompatActivity implements FeedContract.View {
+public class FeedActivity extends DaggerAppCompatActivity implements FeedContract.View {
 
     @Inject
     Lazy<FeedPresenter> presenter;
@@ -34,7 +31,6 @@ public class FeedActivity extends AppCompatActivity implements FeedContract.View
     }
 
     private void init() {
-        setInyection();
 
         //init recycler
         RecyclerView rvFeeds = findViewById(R.id.rvFeeds);
@@ -45,14 +41,6 @@ public class FeedActivity extends AppCompatActivity implements FeedContract.View
         progresBar = findViewById(R.id.progresBar);
 
         presenter.get().getFeed(10);
-    }
-
-    private void setInyection() {
-        DaggerFeedComponent.builder()
-                .feedModule(new FeedModule(this))
-                .graphModule(new GraphModule())
-                .build()
-                .inject(this);
     }
 
     @Override

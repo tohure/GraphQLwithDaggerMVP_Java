@@ -1,5 +1,6 @@
 package io.tohure.graphqlwithdagger.ui;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,8 +30,9 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedItemViewHo
         notifyDataSetChanged();
     }
 
+    @NonNull
     @Override
-    public FeedItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public FeedItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater
                 .from(parent.getContext())
                 .inflate(R.layout.item_feed, parent, false);
@@ -38,7 +40,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedItemViewHo
     }
 
     @Override
-    public void onBindViewHolder(FeedAdapter.FeedItemViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull FeedAdapter.FeedItemViewHolder holder, int position) {
 
         if (feedEntries.get(position).postedBy() != null) {
             holder.lblItem1.setText(String.format("@%s", feedEntries.get(position).postedBy().login()));
