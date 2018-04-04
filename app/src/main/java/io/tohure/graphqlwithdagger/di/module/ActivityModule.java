@@ -6,7 +6,7 @@ import io.tohure.graphqlwithdagger.ui.FeedActivity;
 import io.tohure.graphqlwithdagger.ui.FeedActivityModule;
 
 @Module
-public abstract class ActivityBuilder {
+public abstract class ActivityModule {
 
     @ContributesAndroidInjector(modules = FeedActivityModule.class)
     abstract FeedActivity bindFeedActivity();

@@ -5,6 +5,8 @@ import android.os.Looper;
 
 import com.apollographql.apollo.ApolloClient;
 
+import javax.inject.Singleton;
+
 import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;
