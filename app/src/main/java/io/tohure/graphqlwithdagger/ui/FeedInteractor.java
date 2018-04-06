@@ -26,7 +26,7 @@ public class FeedInteractor implements FeedContract.Interactor {
     private ApolloCall<FeedQuery.Data> dataApolloCall;
 
     @Inject
-    public FeedInteractor(ApolloClient apolloClient, Handler handler) {
+    FeedInteractor(ApolloClient apolloClient, Handler handler) {
         this.apolloClient = apolloClient;
         this.handler = handler;
     }
@@ -64,7 +64,6 @@ public class FeedInteractor implements FeedContract.Interactor {
                 .enqueue(new ApolloCall.Callback<FeedQuery.Data>() {
                     @Override
                     public void onResponse(@Nonnull Response<FeedQuery.Data> response) {
-                        Log.d("thr", "onResponse: " + response.data().feedEntries().toString());
                         callback.getFeedSuccess(response.data().feedEntries());
                     }
 

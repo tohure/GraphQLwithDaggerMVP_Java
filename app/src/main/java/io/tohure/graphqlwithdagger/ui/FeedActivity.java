@@ -59,7 +59,7 @@ public class FeedActivity extends DaggerAppCompatActivity implements FeedContrac
     }
 
     @Override
-    public void showResult(final List<FeedQuery.FeedEntry> feedEntries) {
+    public void showResult(List<FeedQuery.FeedEntry> feedEntries) {
 
         //With Handler way
         feedAdapter.addData(feedEntries);
