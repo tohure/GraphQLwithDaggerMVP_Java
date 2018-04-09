@@ -1,4 +1,4 @@
-package io.tohure.graphqlwithdagger.ui;
+package io.tohure.graphqlwithdagger.ui.feed;
 
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;

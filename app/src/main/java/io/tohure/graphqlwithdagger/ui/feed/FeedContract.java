@@ -1,5 +1,4 @@
-package io.tohure.graphqlwithdagger.ui;
-
+package io.tohure.graphqlwithdagger.ui.feed;
 
 import java.util.List;
 
