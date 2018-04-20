@@ -2,8 +2,8 @@ package io.tohure.graphqlwithdagger.di.module;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
-import io.tohure.graphqlwithdagger.ui.FeedActivity;
-import io.tohure.graphqlwithdagger.ui.FeedActivityModule;
+import io.tohure.graphqlwithdagger.ui.feed.FeedActivity;
+import io.tohure.graphqlwithdagger.ui.feed.FeedActivityModule;
 
 @Module
 public abstract class ActivityModule {

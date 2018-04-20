@@ -17,17 +17,17 @@ import dagger.Provides;
 public abstract class FeedActivityModule {
 
     @Provides
-    static Handler provideMainHandler() {
+    Handler provideMainHandler() {
         return new Handler(Looper.getMainLooper());
     }
 
     @Provides
-    static FeedInteractor provideFeedInteractor(ApolloClient apolloClient, Handler handler) {
+    FeedInteractor provideFeedInteractor(ApolloClient apolloClient, Handler handler) {
         return new FeedInteractor(apolloClient, handler);
     }
 
     @Provides
-    static FeedPresenter provideFeedPresenter(FeedContract.View view, FeedInteractor interactor) {
+    FeedPresenter provideFeedPresenter(FeedContract.View view, FeedInteractor interactor) {
         return new FeedPresenter(view, interactor);
     }
 

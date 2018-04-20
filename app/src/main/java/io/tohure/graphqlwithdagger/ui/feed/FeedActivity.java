@@ -65,12 +65,7 @@ public class FeedActivity extends DaggerAppCompatActivity implements FeedContrac
         feedAdapter.addData(feedEntries);
 
         //Without Handler way
-        /*FeedActivity.this.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                feedAdapter.addData(feedEntries);
-            }
-        });*/
+        //FeedActivity.this.runOnUiThread(() -> feedAdapter.addData(feedEntries));
 
     }
 
