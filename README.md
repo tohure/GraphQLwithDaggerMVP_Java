@@ -16,3 +16,7 @@ La inyección de dependencias están siendo manejadas con Dagger2.
 
 Todo el proyecto esta bajo Java, desde las capas del MVP, 
 los módulos para la Inyección de Dependencias y las vistas usadas.
+
+He aquí post acerca de este mismo ejemplo explicado al detalle:
+
+https://medium.com/orbismobile/apollo-dagger2-graphql-in-android-java-f479d777efaf
